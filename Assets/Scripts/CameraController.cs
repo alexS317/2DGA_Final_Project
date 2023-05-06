@@ -27,10 +27,13 @@ public class CameraController : MonoBehaviour
     // Prevent the camera from moving off the background plane
     private void KeepCameraInsideGameField()
     {
+        Vector3 currentPosition = transform.position;
+        
         // Get properties of the background image
-        float fieldWidth = _backgroundData.bounds.size.x;
-        float fieldHeight = _backgroundData.bounds.size.y;
-        Vector3 origin = _backgroundData.bounds.center;
+        Bounds backgroundBounds = _backgroundData.bounds;
+        float fieldWidth = backgroundBounds.size.x;
+        float fieldHeight = backgroundBounds.size.y;
+        Vector3 origin = backgroundBounds.center;
 
         // Calculate border positions of the background image
         float start = origin.x - fieldWidth / 2f;
@@ -39,28 +42,28 @@ public class CameraController : MonoBehaviour
         float bottom = origin.y - fieldHeight / 2f;
 
         // Get properties of the camera
-        float cameraHalfHeight = Camera.main.orthographicSize;
-        float cameraHalfWidth = cameraHalfHeight * Camera.main.aspect;
+        float cameraHalfHeight = Camera.main!.orthographicSize;
+        float cameraHalfWidth = cameraHalfHeight * Camera.main!.aspect;
 
         // Set camera position
-        if (transform.position.x - cameraHalfWidth < start)
+        if (currentPosition.x - cameraHalfWidth < start)
         {
-            transform.position = new Vector3(start + cameraHalfWidth, transform.position.y, transform.position.z);
+            transform.position = new Vector3(start + cameraHalfWidth, transform.position.y, currentPosition.z);
         }
 
-        if (transform.position.x + cameraHalfWidth > end)
+        if (currentPosition.x + cameraHalfWidth > end)
         {
-            transform.position = new Vector3(end - cameraHalfWidth, transform.position.y, transform.position.z);
+            transform.position = new Vector3(end - cameraHalfWidth, transform.position.y, currentPosition.z);
         }
 
-        if (transform.position.y - cameraHalfHeight < bottom)
+        if (currentPosition.y - cameraHalfHeight < bottom)
         {
-            transform.position = new Vector3(transform.position.x, bottom + cameraHalfHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, bottom + cameraHalfHeight, currentPosition.z);
         }
 
-        if (transform.position.y + cameraHalfHeight > top)
+        if (currentPosition.y + cameraHalfHeight > top)
         {
-            transform.position = new Vector3(transform.position.x, top - cameraHalfHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, top - cameraHalfHeight, currentPosition.z);
         }
     }
 }

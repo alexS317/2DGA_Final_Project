@@ -1,0 +1,93 @@
+PlayerCharacter.png
+size:1748,777
+filter:Linear,Linear
+pma:true
+A
+bounds:153,9,67,38
+C
+bounds:1650,91,61,23
+E
+bounds:355,20,67,27
+F
+bounds:553,28,50,19
+I
+bounds:287,16,66,31
+L
+bounds:222,12,63,35
+O
+bounds:424,7,46,40
+U
+bounds:472,7,36,40
+arm left
+bounds:918,595,629,180
+arm right
+bounds:924,413,629,180
+closed left
+bounds:1654,387,92,71
+closed right
+bounds:1654,193,91,71
+ear
+bounds:1406,7,66,80
+eyebrow left
+bounds:2,13,73,34
+eyebrow right
+bounds:77,17,74,30
+eyes white
+bounds:1477,192,219,86
+rotate:90
+fist down left
+bounds:1654,266,119,81
+rotate:90
+fist down right
+bounds:1285,5,119,82
+fist up left
+bounds:1043,2,119,85
+fist up right
+bounds:1164,2,119,85
+hair
+bounds:1043,89,432,322
+hair part 1
+bounds:1549,627,127,148
+hair part 2
+bounds:1477,71,96,119
+hair part 3
+bounds:1474,13,117,56
+hair part 4
+bounds:1575,89,73,113
+half-closed left
+bounds:1565,204,87,73
+half-closed right
+bounds:1650,116,86,75
+head
+bounds:709,43,332,353
+iris left
+bounds:1713,73,33,41
+iris right
+bounds:510,14,33,41
+rotate:90
+leg left
+bounds:2,561,214,914
+rotate:90
+leg right
+bounds:2,398,161,920
+rotate:90
+neck
+bounds:1644,460,96,141
+open left
+bounds:1678,603,84,68
+rotate:90
+open right
+bounds:1678,689,86,68
+rotate:90
+side left
+bounds:1555,453,172,87
+rotate:90
+side right
+bounds:1565,279,172,87
+rotate:90
+smile
+bounds:1737,338,47,9
+rotate:90
+torso
+bounds:2,49,347,705
+rotate:90

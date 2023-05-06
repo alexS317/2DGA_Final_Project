@@ -3,16 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Spine.Unity;
 
 public class PlayerController : MonoBehaviour
 {
+    [SpineAnimation] public string idleAnimation;
+    [SpineAnimation] public string runAnimation;
+    [SpineAnimation] public string jumpAnimation;
+
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpStrength = 5f;
 
     private Collider2D _collider;
     private Rigidbody2D _rb;
     private Vector3 _moveBy;
-    private bool _isGrounded = false;
+    private bool _isGrounded;
+
+    private SkeletonAnimation _skeletonAnimation;
+    private Spine.AnimationState _animationState;
+    private Spine.Skeleton _skeleton;
 
     private SpriteRenderer _backgroundData;
 
@@ -22,7 +31,13 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
 
+        _skeletonAnimation = GetComponent<SkeletonAnimation>();
+        _animationState = _skeletonAnimation.AnimationState;
+        _skeleton = _skeletonAnimation.skeleton;
+
         _backgroundData = GameObject.Find("Background").GetComponent<SpriteRenderer>();
+        
+        _animationState.SetAnimation(0, idleAnimation, true);
     }
 
     // Update is called once per frame
@@ -38,6 +53,29 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 inputValue = input.Get<Vector2>();
         _moveBy = new Vector3(inputValue.x, 0, 0);
+
+        if (inputValue.x == 0)
+        {
+            _animationState.SetAnimation(0, idleAnimation, true);
+        }
+        else
+        {
+            _animationState.SetAnimation(0, runAnimation, true);
+        }
+
+        // Flip the facing direction of the character
+        if (inputValue.x > 0)
+        {
+            _skeleton.ScaleX = 1;
+        }
+        else if (inputValue.x < 0)
+        {
+            _skeleton.ScaleX = -1;
+        }
+        else
+        {
+            _skeleton.ScaleX = _skeleton.ScaleX;
+        }
     }
 
     private void OnJump()
@@ -46,6 +84,7 @@ public class PlayerController : MonoBehaviour
         if (_isGrounded)
         {
             _rb.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+            _animationState.SetAnimation(0, jumpAnimation, true);
             _isGrounded = false;
         }
     }
@@ -55,16 +94,29 @@ public class PlayerController : MonoBehaviour
         // Check if the player is standing on the ground
         if (other.gameObject.CompareTag("Ground"))
         {
+            if (_moveBy.x == 0)
+            {
+                _animationState.SetAnimation(0, idleAnimation, true);
+            }
+            else
+            {
+                _animationState.SetAnimation(0, runAnimation, true);
+            }
+
             _isGrounded = true;
         }
     }
 
+    // Prevent the player from running off the screen
     private void KeepPlayerInScreen()
     {
+        Vector3 currentPosition = transform.position;
+
         // Get properties of the background image
-        float fieldWidth = _backgroundData.bounds.size.x;
-        float fieldHeight = _backgroundData.bounds.size.y;
-        Vector3 origin = _backgroundData.bounds.center;
+        Bounds backgroundBounds = _backgroundData.bounds;
+        float fieldWidth = backgroundBounds.size.x;
+        float fieldHeight = backgroundBounds.size.y;
+        Vector3 origin = backgroundBounds.center;
 
         // Calculate border positions of the background image
         float start = origin.x - fieldWidth / 2f;
@@ -73,18 +125,19 @@ public class PlayerController : MonoBehaviour
         float bottom = origin.y - fieldHeight / 2f;
 
         // Get properties of the player
-        float halfWidth = _collider.bounds.extents.x;
-        float halfHeight = _collider.bounds.extents.y;
+        Bounds cameraBounds = _collider.bounds;
+        float halfWidth = cameraBounds.extents.x;
+        float halfHeight = cameraBounds.extents.y;
 
         // Set player position
-        if (transform.position.x - halfWidth < start)
+        if (currentPosition.x - halfWidth < start)
         {
-            transform.position = new Vector3(start + halfWidth, transform.position.y, transform.position.z);
+            transform.position = new Vector3(start + halfWidth, currentPosition.y, currentPosition.z);
         }
 
-        if (transform.position.x + halfWidth > end)
+        if (currentPosition.x + halfWidth > end)
         {
-            transform.position = new Vector3(end - halfWidth, transform.position.y, transform.position.z);
+            transform.position = new Vector3(end - halfWidth, currentPosition.y, currentPosition.z);
         }
     }
 }
