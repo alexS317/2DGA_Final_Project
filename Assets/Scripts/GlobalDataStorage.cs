@@ -1,34 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using TMPro;
 
 public class GlobalDataStorage : MonoBehaviour
 {
     public static GlobalDataStorage Instance;
 
-    private int _score;
+    public int Score { get; private set; }
     public int playerLives = 3;
+
+    private TMP_Text _livesObj;
+    private TMP_Text _scoreObj;
+
+    void Awake()
+    {
+        Instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        _livesObj = GameObject.Find("Lives").GetComponent<TMP_Text>();
+        _scoreObj = GameObject.Find("Score").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        _livesObj.text = $"Lives: {playerLives}";
+        _scoreObj.text = $"Score: {Score}";
     }
 
     // Increase the game score
     public void IncreaseScore(int points)
     {
-        _score += points;
-        Debug.Log(_score);
+        Score += points;
+        Debug.Log(Score);
     }
 
     // Player loses one life on each attack

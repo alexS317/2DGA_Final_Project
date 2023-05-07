@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         _skeleton = _skeletonAnimation.skeleton;
 
         _backgroundData = GameObject.Find("Background").GetComponent<SpriteRenderer>();
-        
+
         _animationState.SetAnimation(0, idleAnimation, true);
     }
 
@@ -138,6 +138,12 @@ public class PlayerController : MonoBehaviour
         if (currentPosition.x + halfWidth > end)
         {
             transform.position = new Vector3(end - halfWidth, currentPosition.y, currentPosition.z);
+        }
+
+        if (currentPosition.y + halfHeight < bottom)
+        {
+            GlobalDataStorage.Instance.playerLives = 0;
+            ScenesManager.Instance.LoadScene(ScenesManager.Scene.EndScreen);
         }
     }
 }

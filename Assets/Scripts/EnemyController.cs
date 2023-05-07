@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -35,13 +36,12 @@ public class EnemyController : MonoBehaviour
         _passedTime += Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Trigger");
         GlobalDataStorage.Instance.AttackPlayer();
         if (GlobalDataStorage.Instance.playerLives <= 0)
         {
-            Destroy(other.gameObject);
+            ScenesManager.Instance.LoadScene(ScenesManager.Scene.EndScreen);
         }
     }
 
