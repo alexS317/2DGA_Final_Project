@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 900
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd7dc8c69d50f62499da3429d596acdd
-      internalID: 580475126
+      spriteID: 8840f9f8e33da4e4d9f9f397011a247f
+      internalID: 1541124087
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52e754ff38f7de47914267f8987381d
-      internalID: -1894201736
+      spriteID: 91562f17c13e80644932b4f6853d8d33
+      internalID: -102357499
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92b4340151e08a04ab49109965699d14
-      internalID: 503354788
+      spriteID: df608e1717212fe4fb80a10c0ec1b412
+      internalID: -589950677
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c2641bd4a47d034f954d3a5a4beadd4
-      internalID: -2035099539
+      spriteID: dcd2a8ec9d689154fbe33527bc937c02
+      internalID: 1450941640
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 345fa0cf0aa343544aa7b430613b83f2
-      internalID: -1765629659
+      spriteID: 075ba7f754c0f474892bdb59764110f6
+      internalID: 68704690
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f9ec817e5e25014b95291e1c6aec460
-      internalID: -1334857800
+      spriteID: 7c091cb5f386b95479c5460b6a44133b
+      internalID: 387700929
       vertices: []
       indices: 
       edges: []
@@ -241,12 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      EnemySpriteSheet_0: 580475126
-      EnemySpriteSheet_1: -1894201736
-      EnemySpriteSheet_2: 503354788
-      EnemySpriteSheet_3: -2035099539
-      EnemySpriteSheet_4: -1765629659
-      EnemySpriteSheet_5: -1334857800
+      EnemySpriteSheet_0: 1541124087
+      EnemySpriteSheet_1: -102357499
+      EnemySpriteSheet_2: -589950677
+      EnemySpriteSheet_3: 1450941640
+      EnemySpriteSheet_4: 68704690
+      EnemySpriteSheet_5: 387700929
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -8,6 +8,7 @@ public class UIEndScreen : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button menuButton;
+    
     private TMP_Text _endMessage;
     private TMP_Text _totalScore;
     
@@ -17,6 +18,7 @@ public class UIEndScreen : MonoBehaviour
         _endMessage = GameObject.Find("EndMessage").GetComponent<TMP_Text>();
         _totalScore = GameObject.Find("Score").GetComponent<TMP_Text>();
 
+        // Display end message depending on whether player lost or won
         if (GlobalDataStorage.Instance.playerLives <= 0)
         {
             _endMessage.text = "You lost! Go for another try!";
@@ -29,11 +31,5 @@ public class UIEndScreen : MonoBehaviour
         
         restartButton.onClick.AddListener(ScenesManager.Instance.LoadGame);
         menuButton.onClick.AddListener(ScenesManager.Instance.LoadMainMenu);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

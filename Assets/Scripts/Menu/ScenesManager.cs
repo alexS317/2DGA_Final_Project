@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -11,22 +10,16 @@ public class ScenesManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        // Don't create a scenes manager if there already is one
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(this);
+            return;
         }
 
-        DontDestroyOnLoad(this.gameObject);
-    }
+        Instance = this;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        DontDestroyOnLoad(this.gameObject); // Don't destroy it when the scene changes
     }
 
     public enum Scene
@@ -36,16 +29,19 @@ public class ScenesManager : MonoBehaviour
         EndScreen
     }
 
+    // Load any scene
     public void LoadScene(Scene scene)
     {
         SceneManager.LoadScene(scene.ToString());
     }
 
+    // Load the game starting from the first level
     public void LoadGame()
     {
         SceneManager.LoadScene(Scene.Level01.ToString());
     }
 
+    // Load the main menu
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(Scene.MainMenu.ToString());

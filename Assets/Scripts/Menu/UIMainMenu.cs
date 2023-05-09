@@ -14,10 +14,4 @@ public class UIMainMenu : MonoBehaviour
         startButton.onClick.AddListener(ScenesManager.Instance.LoadGame);
         exitButton.onClick.AddListener(Application.Quit);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
