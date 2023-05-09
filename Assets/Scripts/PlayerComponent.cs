@@ -23,8 +23,6 @@ public class PlayerComponent : MonoBehaviour
     private Spine.AnimationState _animationState;
     private Spine.Skeleton _skeleton;
 
-    private SpriteRenderer _backgroundData;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +32,6 @@ public class PlayerComponent : MonoBehaviour
         _skeletonAnimation = GetComponent<SkeletonAnimation>();
         _animationState = _skeletonAnimation.AnimationState;
         _skeleton = _skeletonAnimation.skeleton;
-
-        _backgroundData = GameObject.Find("Background").GetComponent<SpriteRenderer>();
 
         _animationState.SetAnimation(0, idleAnimation, true);
     }
@@ -108,21 +104,10 @@ public class PlayerComponent : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
 
-        // Get properties of the background image
-        Bounds backgroundBounds = _backgroundData.bounds;
-        float fieldWidth = backgroundBounds.size.x;
-        float fieldHeight = backgroundBounds.size.y;
-        Vector3 origin = backgroundBounds.center;
-
-        // Calculate border positions of the background image
-        float start = origin.x - fieldWidth / 2f;
-        float end = origin.x + fieldWidth / 2f;
-        float top = origin.y + fieldHeight / 2f;
-        float bottom = origin.y - fieldHeight / 2f;
-        // float start = PlayingFieldData.GetPlayingField().start;
-        // float end = origin.x + fieldWidth / 2f;
-        // float top = origin.y + fieldHeight / 2f;
-        // float bottom = origin.y - fieldHeight / 2f;
+        // Get border properties of the background image
+        float start = PlayingFieldData.GetPlayingField().start;
+        float end = PlayingFieldData.GetPlayingField().end;
+        float bottom = PlayingFieldData.GetPlayingField().bottom;
 
         // Get properties of the player
         Bounds playerBounds = _collider.bounds;

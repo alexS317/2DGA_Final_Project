@@ -6,14 +6,6 @@ public class CameraComponent : MonoBehaviour
 {
     [SerializeField] private GameObject playerObject;
 
-    private SpriteRenderer _backgroundData;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _backgroundData = GameObject.Find("Background").GetComponent<SpriteRenderer>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,17 +21,11 @@ public class CameraComponent : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
         
-        // Get properties of the background image
-        Bounds backgroundBounds = _backgroundData.bounds;
-        float fieldWidth = backgroundBounds.size.x;
-        float fieldHeight = backgroundBounds.size.y;
-        Vector3 origin = backgroundBounds.center;
-
-        // Calculate border positions of the background image
-        float start = origin.x - fieldWidth / 2f;
-        float end = origin.x + fieldWidth / 2f;
-        float top = origin.y + fieldHeight / 2f;
-        float bottom = origin.y - fieldHeight / 2f;
+        // Get border properties of the background image
+        float start = PlayingFieldData.GetPlayingField().start;
+        float end = PlayingFieldData.GetPlayingField().end;
+        float top = PlayingFieldData.GetPlayingField().top;
+        float bottom = PlayingFieldData.GetPlayingField().bottom;
 
         // Get properties of the camera
         float cameraHalfHeight = Camera.main!.orthographicSize;

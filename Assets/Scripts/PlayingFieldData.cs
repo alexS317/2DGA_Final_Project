@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//  Helper class to get the data of the playing field
 public class PlayingFieldData : MonoBehaviour
 {
-    public float start { get; private set; }
-    public float end { get; private set; }
-    public float top { get; private set; }
-    public float bottom { get; private set; }
-    
     private static SpriteRenderer _field;
+    
     // Start is called before the first frame update
     void Start()
     {
         _field = GameObject.Find("Background").GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
+    // Get borders of the background image (= playing field)
     public static (float start, float end, float top, float bottom) GetPlayingField()
     {
         // Get properties of the background image
