@@ -37,7 +37,7 @@ public class SpaceshipComponent : MonoBehaviour
         Vector3 endPosition = new Vector3(end + width, _startPosition.y, _startPosition.z);
 
         transform.position = Vector3.Lerp(_startPosition, endPosition, _passedTime);    // Interpolate the object between points
-        transform.position = new Vector3(transform.position.x, _startPosition.y + Mathf.Sin(+curveHeight * Time.time),
+        transform.position = new Vector3(transform.position.x, _startPosition.y + Mathf.Sin(curveHeight * Time.time),
             transform.position.z);  // Use sine curve for up and down movement
         _passedTime += Time.deltaTime * speed;
 
